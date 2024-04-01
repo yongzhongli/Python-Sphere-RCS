@@ -56,6 +56,15 @@ def Bistatic_RCS(radius, frequency, background_material, sphere_material, distan
     '''
     nang = 100
     theta = np.linspace(0,np.pi,nang)
+
+    if distance > 0:
+        distance_ideal = 2000 * 3e8 / frequency
+    else:
+        distance_ideal = -2000 * 3e8 / frequency
+
+    if distance < distance_ideal:
+        distance = distance_ideal
+        print("The sensor is replaced farther away according to wavelength to ensure the accurate calculation of RCS.")
     #distance = 2000
     #phi = 0
 
